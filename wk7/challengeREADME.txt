@@ -52,4 +52,4 @@ Change visuals: Edit matplotlib settings for different chart styles.
 
 Author & License
 Author: Abidoye Abdulmujeeb
-License: MIT (Free for reuse)
+License:PLP (Free for reuse)
