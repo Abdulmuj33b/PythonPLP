@@ -1,0 +1,97 @@
+class Gadget:
+    def __init__(self, brand, model, price):
+        self.brand = brand
+        self.model = model
+        self.price = price
+
+    def show_details(self):
+        return f"{self.brand} {self.model} costs ${self.price}."
+
+# Inheritance
+class Smartphone(Gadget):
+    def __init__(self, brand, model, price, os):
+        super().__init__(brand, model, price)
+        self.os = os
+
+    def show_details(self):
+        return f"{self.brand} {self.model} runs on {self.os} and costs ${self.price}."
+
+# Creating objects
+gadget1 = Gadget("TechCorp", "X100", 299)
+smartphone1 = Smartphone("Innovate", "PhoneX", 999, "Android")
+
+print(gadget1.show_details())
+print(smartphone1.show_details())
+class Gadget:
+    def __init__(self, brand, model, price):
+        self.brand = brand
+        self.model = model
+        self.price = price
+
+    def show_details(self):
+        return f"{self.brand} {self.model} costs ${self.price}."
+
+# Inheritance
+class Smartphone(Gadget):
+    def __init__(self, brand, model, price, os):
+        super().__init__(brand, model, price)
+        self.os = os
+
+    def show_details(self):
+        return f"{self.brand} {self.model} runs on {self.os} and costs ${self.price}."
+
+# Creating objects
+gadget1 = Gadget("TechCorp", "X100", 299)
+smartphone1 = Smartphone("Innovate", "PhoneX", 999, "Android")
+
+print(gadget1.show_details())
+print(smartphone1.show_details())
+class Gadget:
+    def __init__(self, brand, model, price):
+        self.brand = brand
+        self.model = model
+        self.price = price
+
+    def show_details(self):
+        return f"{self.brand} {self.model} costs ${self.price}."
+
+# Inheritance
+class Smartphone(Gadget):
+    def __init__(self, brand, model, price, os):
+        super().__init__(brand, model, price)
+        self.os = os
+
+    def show_details(self):
+        return f"{self.brand} {self.model} runs on {self.os} and costs ${self.price}."
+
+# Creating objects
+gadget1 = Gadget("TechCorp", "X100", 299)
+smartphone1 = Smartphone("Innovate", "PhoneX", 999, "Android")
+
+print(gadget1.show_details())
+print(smartphone1.show_details())
+class Gadget:
+    def __init__(self, brand, model, price):
+        self.brand = brand
+        self.model = model
+        self.price = price
+
+    def show_details(self):
+        return f"{self.brand} {self.model} costs ${self.price}."
+
+# Inheritance
+class Smartphone(Gadget):
+    def __init__(self, brand, model, price, os):
+        super().__init__(brand, model, price)
+        self.os = os
+
+    def show_details(self):
+        return f"{self.brand} {self.model} runs on {self.os} and costs ${self.price}."
+
+# Creating objects
+gadget1 = Gadget("TechCorp", "X100", 299)
+smartphone1 = Smartphone("Innovate", "PhoneX", 999, "Android")
+
+print(gadget1.show_details())
+print(smartphone1.show_details())
+
