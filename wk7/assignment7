@@ -1,0 +1,102 @@
+# ====== ENHANCED DATA ANALYSIS SCRIPT ======
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.datasets import load_iris
+
+# ====== CUSTOMIZATION 1: SET PLOT STYLE ======
+sns.set_style("whitegrid")  # Modern, clean background style
+plt.rcParams['figure.facecolor'] = 'white'  # White background for saved images
+
+# ====== TASK 1: LOAD AND EXPLORE (WITH CUSTOM CSV OPTION) ======
+use_iris = False  # Set to False to use your own CSV
+
+try:
+    if use_iris:
+        # Default Iris dataset
+        iris = load_iris()
+        df = pd.DataFrame(iris.data, columns=iris.feature_names)
+        df['species'] = iris.target_names[iris.target]
+        print("=== Using Iris Dataset ===")
+    else:
+        # ====== CUSTOMIZATION 2: LOAD CUSTOM CSV ======
+        df = pd.read_csv("your_data.csv")
+        # Convert date column if exists (for time-series)
+        if 'date' in df.columns:
+            df['date'] = pd.to_datetime(df['date'])
+            df = df.sort_values('date')
+        print("=== Using Custom CSV Dataset ===")
+    
+    print("\nFirst 5 rows:")
+    print(df.head())
+    
+    # Data cleaning
+    if df.isnull().sum().any():
+        df = df.fillna(df.mean())  # Customization: Fill with mean instead of drop
+        print("\nMissing values filled with column means.")
+    else:
+        print("\nNo missing values found.")
+
+except Exception as e:
+    print(f"Error: {str(e)}")
+    exit()
+
+# ====== TASK 2: ENHANCED ANALYSIS ======
+print("\n=== ENHANCED STATISTICS ===")
+stats = df.describe()
+stats.loc['variance'] = df.var()  # Add variance row
+print(stats)
+
+# ====== CUSTOMIZATION 3: ADDITIONAL ANALYSIS ======
+if 'species' in df.columns:
+    print("\n=== ADVANCED GROUP ANALYSIS ===")
+    grouped = df.groupby('species').agg(['mean', 'std', 'count'])
+    print(grouped)
+elif 'category' in df.columns:
+    print("\n=== CATEGORY ANALYSIS ===")
+    print(df.groupby('category').mean())
+
+# ====== TASK 3: CUSTOMIZED VISUALIZATIONS ======
+plt.figure(figsize=(18, 12))
+custom_palette = sns.color_palette("husl", 3)  # Custom color scheme
+
+# 1. Enhanced Line Plot
+if 'date' in df.columns:
+    plt.subplot(2, 2, 1)
+    sns.lineplot(data=df, x='date', y=df.select_dtypes('number').columns[0])
+    plt.title("Time Series Trend", fontsize=14, pad=20)
+    plt.xticks(rotation=45)
+
+# 2. Improved Bar Chart
+plt.subplot(2, 2, 2)
+ax = sns.barplot(data=df, x=df.select_dtypes('object').columns[0], 
+                y=df.select_dtypes('number').columns[0],
+                palette=custom_palette, ci=None)
+plt.title("Comparative Analysis", fontsize=14, pad=20)
+for p in ax.patches:
+    ax.annotate(f"{p.get_height():.1f}", 
+                (p.get_x() + p.get_width() / 2., p.get_height()),
+                ha='center', va='center', xytext=(0, 10), 
+                textcoords='offset points')
+
+# 3. Distribution Plot with Custom Bins
+plt.subplot(2, 2, 3)
+sns.histplot(data=df, x=df.select_dtypes('number').columns[1], 
+            bins=20, kde=True, color=custom_palette[0])
+plt.title("Distribution Analysis", fontsize=14, pad=20)
+
+# 4. Advanced Scatter Plot
+plt.subplot(2, 2, 4)
+scatter = sns.scatterplot(data=df, 
+                         x=df.select_dtypes('number').columns[0],
+                         y=df.select_dtypes('number').columns[1],
+                         hue=df.select_dtypes('object').columns[0] if df.select_dtypes('object').any().any() else None,
+                         palette=custom_palette,
+                         s=100)
+plt.title("Relationship Study", fontsize=14, pad=20)
+plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+
+plt.tight_layout()
+plt.savefig('enhanced_analysis.png', dpi=300, bbox_inches='tight')
+print("\n=== ANALYSIS COMPLETE ===")
+print("Enhanced visualizations saved as 'enhanced_analysis.png'")
