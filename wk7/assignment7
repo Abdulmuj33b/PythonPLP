@@ -9,7 +9,7 @@ sns.set_style("whitegrid")  # Modern, clean background style
 plt.rcParams['figure.facecolor'] = 'white'  # White background for saved images
 
 # ====== TASK 1: LOAD AND EXPLORE (WITH CUSTOM CSV OPTION) ======
-use_iris = False  # Set to False to use your own CSV
+use_iris = False  # Set to False to use custom CSV
 
 try:
     if use_iris:
@@ -20,7 +20,7 @@ try:
         print("=== Using Iris Dataset ===")
     else:
         # ====== CUSTOMIZATION 2: LOAD CUSTOM CSV ======
-        df = pd.read_csv("your_data.csv")
+        df = pd.read_csv("custom_data.csv")
         # Convert date column if exists (for time-series)
         if 'date' in df.columns:
             df['date'] = pd.to_datetime(df['date'])
