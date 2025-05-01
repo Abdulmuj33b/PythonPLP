@@ -27,10 +27,9 @@ Date (YYYY-MM-DD)	Product	Quantity Sold	Revenue ($)
 Output Files
 sales_summary.txt
 
-
-    Total Revenue: $9,100  
-    Best-Selling Product: Mouse (15 units sold)  
-    Highest Sales Day: 2025-03-01 ($5,300)  
+    Total Revenue: $38,700
+    Best-Selling Product: Mouse (25 units sold)
+    Highest Sales Day: 2025-03-07 ($7,500)
     sales_trends.png
 
 Left: Daily revenue bar chart
