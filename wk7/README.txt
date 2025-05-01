@@ -91,4 +91,4 @@ variance   0.685694     0.189979
 
 Author: Your Name  
 Version: 1.1  
-License: PLP
+License: PLP (Free for reuse)
